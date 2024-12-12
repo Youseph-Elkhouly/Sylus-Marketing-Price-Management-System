@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FFFFFF; /* White background */
+    color: #333333; /* Dark gray text for readability */
+}
+
+header {
+    background-color: #cfb313; /* Deep Blue */
+    color: #FFFFFF; /* White text */
+    padding: 10px 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #FFFFFF; /* White text */
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    background-color: #F4F4F4; /* Light gray background for main content */
+}
+
+#price-table {
+    margin-top: 20px;
+}
+
+#price-table input {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #CCCCCC; /* Light gray border */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #FFFFFF; /* White table background */
+}
+
+th, td {
+    border: 1px solid #CCCCCC; /* Light gray borders */
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #cfb313; /* Deep Blue for header */
+    color: #FFFFFF; /* White text */
+}
+
+tr:nth-child(even) {
+    background-color: #F4F4F4; /* Light gray for even rows */
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #cfb313; /* Deep Blue */
+    color: #FFFFFF; /* White text */
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
