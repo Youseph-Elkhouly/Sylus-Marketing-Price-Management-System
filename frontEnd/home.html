@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylus Marketing - Home</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            box-sizing: border-box;
+        }
+
+        /* Header */
+        header {
+            background-color: #000000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #da9d1b;
+        }
+
+        .logo {
+            width: 200px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #eca85a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #da9d1b;
+        }
+
+        .section-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .section-card {
+            background-color: #292929;
+            border: 2px solid #da9d1b;
+            border-radius: 8px;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .section-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .section-card h3 {
+            margin: 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Search Section */
+        .search-section {
+            display: none;
+            margin-top: 30px;
+            animation: slide-down 0.5s ease;
+        }
+
+        @keyframes slide-down {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #da9d1b;
+            color: #1e1e1e;
+        }
+
+        tr:nth-child(even) {
+            background-color: #292929;
+        }
+
+        tr:hover {
+            background-color: #333;
+        }
+
+        .product-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #000000;
+            color: #dbb768;
+            margin-top: 20px;
+            border-top: 2px solid #da9d1b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Properlogo.png" alt="Stylus Marketing Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#suppliers">Suppliers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Our Products</h2>
+        <div class="section-container">
+            <div class="section-card" onclick="openSection('business')">
+                <img src="designphotos/design1.png" alt="Business Cards">
+                <h3>Business Cards</h3>
+            </div>
+            <div class="section-card" onclick="openSection('hoodies')">
+                <img src="designphotos/design2.webp" alt="Hoodies">
+                <h3>Hoodies</h3>
+            </div>
+            <div class="section-card" onclick="openSection('tshirts')">
+                <img src="designphotos/design3.avif" alt="T-Shirts">
+                <h3>T-Shirts</h3>
+            </div>
+            <div class="section-card" onclick="openSection('banners')">
+                <img src="designphotos\design4.png" alt="collaredshirts">
+                <h3>Collared Shirts</h3>
+            </div>
+            <div class="section-card" onclick="openSection('banners')">
+                <img src="designphotos\design5.jpeg" alt="Banners">
+                <h3>Banners</h3>
+            </div>
+
+        </div>
+
+        <!-- Business Cards Section -->
+        <div id="business" class="search-section">
+            <h2>Business Cards</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="BCPhotos/bestvalue.png" alt="Best Value" class="product-img"></td>
+                        <td>Best Value Business Cards</td>
+                        <td>These Wholesale Business Cards offer the best value if you are looking for the most cost effective option or the quickest turnaround.
+
+                            14pt Profit Maximizer</td>
+                        <td><a href="https://sinalite.com/en_ca/business-cards/14pt-profit-maximizer.html" target="_blank">Link</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="BCPhotos/matte.png" alt="Matte" class="product-img"></td>
+                        <td>Matte Business Cards</td>
+                        <td>Our Matte Business Cards are our standard and most popular finish. If your customers are looking for a silky, elegant finish, then our Matte Wholesale Business Cards are the way to go! This finish is smooth to the touch and will complement any design.
+
+                            14pt Matte Finish
+                            16pt Matte Finish</td>
+                        <td><a href="#">Link</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="image.png" alt="Specialty" class="product-img"></td>
+                        <td>Specialty Business Cards</td>
+                        <td>Unique finishes and stunning options.</td>
+                        <td><a href="#">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="image.png" alt="Specialty" class="product-img"></td>
+                        <td>Specialty Business Cards</td>
+                        <td>Unique finishes and stunning options.</td>
+                        <td><a href="#">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="image.png" alt="Specialty" class="product-img"></td>
+                        <td>Specialty Business Cards</td>
+                        <td>Unique finishes and stunning options.</td>
+                        <td><a href="#">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+   
+
+    <script>
+        function openSection(sectionId) {
+            const sections = document.querySelectorAll('.search-section');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>

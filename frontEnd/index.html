@@ -3,45 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylus Marketing - Supplier Prices</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <title>Stylus Marketing - Login</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #161616; /* Dark background */
+            color: #f0f0f0; /* Light text */
+            overflow-x: hidden; /* Remove horizontal scroll */
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header */
+        header {
+            background-color: #000000;
+            padding: 20px 0;
+            width: 100%;
+            text-align: center;
+            border-bottom: 2px solid #da9d1b;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 370px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        /* Login Form Container */
+        #login {
+            width: 200%;
+            max-width: 500px;
+            margin: auto;
+            background: #000000; /* Dark form background */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(231, 160, 66, 0.863);
+            text-align: left;
+            box-sizing: border-box;
+            position: relative;
+            left: -100px; /* Move the box more to the left */
+            top: 100px; /* Center the box vertically lower */
+        }
+
+        h2 {
+            color: #da9d1b;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-size: 1rem;
+            color: #f0f0f0;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        /* Improved Button */
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1e1e1e;
+            background: linear-gradient(90deg, #da9d1b, #f0b32f);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #f0b32f, #da9d1b);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Error Message */
+        #error-message {
+            color: red;
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            color: #ecd39b;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            margin-top: auto;
+            border-top: 2px solid #000000;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Stylus Marketing</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#suppliers">Suppliers</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <img src="Properlogo.png" alt="Stylus Marketing Logo" class="logo">
     </header>
 
     <main>
-        <section id="price-table">
-            <h2>Current Supplier Prices</h2>
-            <input type="text" id="search-bar" placeholder="Search suppliers..." oninput="filterTable()">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Supplier</th>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Last Updated</th>
-                    </tr>
-                </thead>
-                <tbody id="price-list">
-                    <!-- Dynamically populated rows -->
-                </tbody>
-            </table>
+        <section id="login">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+                <p id="error-message">Invalid username or password. Please try again.</p>
+            </form>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 Stylus Marketing. All Rights Reserved.</p>
     </footer>
+
+    <!-- JavaScript for Validation -->
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Hardcoded valid credentials
+            if (username === 'StylusAdmin1' && password === '123') {
+                window.location.href = 'home.html'; // Redirect to home page
+            } else {
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.style.display = 'block'; // Show error message
+            }
+        });
+    </script>
 </body>
 </html>
