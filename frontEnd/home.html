@@ -152,6 +152,134 @@
             margin: 0 auto;
         }
 
+                /* Product Controls Section */
+        .product-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .product-controls input {
+            padding: 10px;
+            border: 2px solid #da9d1b;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .product-controls button {
+            padding: 10px 20px;
+            background-color: #da9d1b;
+            color: #1e1e1e;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .product-controls button:hover {
+            background-color: #f0b32f;
+        }
+
+        /* Forms */
+        .form-container {
+            background-color: #292929;
+            border: 2px solid #da9d1b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-container h3 {
+            color: #da9d1b;
+            margin-bottom: 15px;
+        }
+
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .form-container input, .form-container select, .form-container textarea {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #da9d1b;
+            color: #1e1e1e;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #f0b32f;
+        }
+
+                /* Password and Keyword Forms */
+        .form-container {
+            background-color: #292929;
+            border: 2px solid #da9d1b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-container h3 {
+            color: #da9d1b;
+            margin-bottom: 15px;
+        }
+
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .form-container input {
+            width: 80%;
+            padding: 7px;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #da9d1b;
+            color: #1e1e1e;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #f0b32f;
+        }
+
+
+
         /* Footer */
         footer {
             text-align: center;
@@ -176,6 +304,67 @@
 
     <main>
         <h2>Our Products</h2>
+        <div class="product-controls">
+            <!-- Search Feature -->
+            <input type="text" id="search-bar" placeholder="Search products or keywords..." onkeyup="searchProducts()">
+        
+            <!-- Buttons -->
+            <button onclick="toggleAddProduct()">Add Product</button>
+            <button onclick="toggleRemoveProduct()">Remove Product</button>
+        </div>
+        
+        <!-- Add Product Form -->
+        <div id="add-product-form" class="form-container" style="display: none;">
+            <h3>Add Product</h3>
+            <label>Type of Product:</label>
+            <select id="product-type">
+                <option value="business">Business Cards</option>
+                <option value="hoodies">Hoodies</option>
+                <option value="tshirts">T-Shirts</option>
+                <option value="collared-shirts">Collared Shirts</option>
+                <option value="banners">Banners</option>
+            </select>
+            <label>Product Name:</label>
+            <input type="text" id="product-name" placeholder="Enter product name">
+            <label>Description:</label>
+            <textarea id="product-description" placeholder="Enter product description"></textarea>
+            <label>Keywords (comma-separated):</label>
+            <input type="text" id="product-keywords" placeholder="e.g., cheapest, high-end">
+            <label>Upload Image:</label>
+            <input type="file" id="product-image" accept="image/*">
+            <label>Details Link:</label>
+            <input type="text" id="product-link" placeholder="Enter product details link">
+            <button onclick="addProduct()">Submit</button>
+        </div>
+        
+        
+        <!-- Remove Product Form -->
+        <div id="remove-product-form" class="form-container" style="display: none;">
+            <h3>Remove Product</h3>
+            <label>Product Name:</label>
+            <input type="text" id="remove-product-name" placeholder="Enter product name to remove">
+            <button onclick="removeProduct()">Remove</button>
+        </div>
+
+                <!-- Password Verification Modal -->
+        <div id="password-form" class="form-container" style="display: none;">
+            <label>Password:</label>
+            <input type="password" id="admin-password" placeholder="Enter password">
+            <button onclick="verifyPassword()">Submit</button>
+        </div>
+
+        <!-- Assign Keywords Form -->
+        <div id="assign-keywords-form" class="form-container" style="display: none;">
+            <h3>Assign Keywords</h3>
+            <label>Product Name:</label>
+            <input type="text" id="keyword-product-name" placeholder="Enter product name">
+            <label>Keywords (comma-separated):</label>
+            <input type="text" id="new-keywords" placeholder="e.g., cheapest, high-end">
+            <button onclick="assignKeywords()">Assign Keywords</button>
+        </div>
+
+        
+
         <div class="section-container">
             <div class="section-card" onclick="openSection('business')">
                 <img src="designphotos/design1.png" alt="Business Cards">
@@ -189,10 +378,10 @@
                 <img src="designphotos/design3.avif" alt="T-Shirts">
                 <h3>T-Shirts</h3>
             </div>
-            <div class="section-card" onclick="openSection('banners')">
-                <img src="designphotos\design4.png" alt="collaredshirts">
+            <div class="section-card" onclick="openSection('collared-shirts')">
+                <img src="designphotos/design4.png" alt="Collared Shirts">
                 <h3>Collared Shirts</h3>
-            </div>
+            </div>            
             <div class="section-card" onclick="openSection('banners')">
                 <img src="designphotos\design5.jpeg" alt="Banners">
                 <h3>Banners</h3>
@@ -231,26 +420,169 @@
                         <td><a href="https://sinalite.com/en_ca/business-cards/14pt-matte-satin-aq.html" target="_blank">Link</a"></td>
                     </tr>
                     <tr>
-                        <td><img src="image.png" alt="Specialty" class="product-img"></td>
-                        <td>Specialty Business Cards</td>
-                        <td>Unique finishes and stunning options.</td>
-                        <td><a href="#">View Details</a></td>
+                        <td><img src="BCPhotos/gloss.png" alt="Gloss" class="product-img"></td>
+                        <td>UV (High Gloss) Business Cards</td>
+                        <td>Our glossiest finish! Our UV Business Cards offer the most shine for a standout look.
+
+                            14pt UV
+                            16pt UV</td>
+                            <td><a href="https://sinalite.com/en_ca/business-cards/14pt-uv-high-gloss.html" target="_blank">Link</a"></td>
                     </tr>
                     <tr>
-                        <td><img src="image.png" alt="Specialty" class="product-img"></td>
-                        <td>Specialty Business Cards</td>
-                        <td>Unique finishes and stunning options.</td>
-                        <td><a href="#">View Details</a></td>
+                        <td><img src="BCPhotos/lamination.png" alt="Specialty" class="product-img"></td>
+                        <td>Lamination Business Cards</td>
+                        <td>Our Laminated Business cards offer more durability. The lamination protects the surface of the card and gives the card a unique feel.
+
+                            18pt Gloss Lamination
+                            18pt Matte + Silk Lamination</td>
+                            <td><a href="https://sinalite.com/en_ca/business-cards/18pt-matte-silk-lamination.html" target="_blank">Link</a"></td>
                     </tr>
                     <tr>
-                        <td><img src="image.png" alt="Specialty" class="product-img"></td>
+                        <td><img src="BCPhotos/AQ.png" alt="Specialty" class="product-img"></td>
+                        <td>AQ Business Cards</td>
+                        <td>Our AQ Business Cards offer a semi-gloss finish that is not too matte and not too glossy, they are just right.
+
+                            14pt AQ
+                            16pt AQ</td>
+                            <td><a href="https://sinalite.com/en_ca/business-cards/14pt-aq.html" target="_blank">Link</a"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="BCPhotos/writable.png" alt="Specialty" class="product-img"></td>
+                        <td>Writable Business Cards</td>
+                        <td>Print writable business cards that are great for appointment cards and more. These uncoated business cards can be easily written on even with pencil.
+
+                            13pt Enviro Uncoated
+                            13pt Linen Uncoated
+                            14pt Writable + AQ
+                            14pt Writable + UV
+                            18pt Writable (C1S)</td>
+                            <td><a href="https://sinalite.com/en_ca/business-cards/13pt-enviro-uncoated.html" target="_blank">Link</a"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="BCPhotos/speciality.png" alt="Specialty" class="product-img"></td>
                         <td>Specialty Business Cards</td>
-                        <td>Unique finishes and stunning options.</td>
-                        <td><a href="#">View Details</a></td>
+                        <td>Impress your customers with eye-catching specialty business cards that come in a variety of stunning stocks and finishes from reflective metallic foil to tough durable stock.
+
+                            Metallic Foil
+                            Kraft Paper
+                            Durable
+                            Spot UV
+                            Pearl Paper
+                            Die Cut
+                            Soft Touch
+                            32pt Painted Edge
+                            Ultra Smooth NEW</td>
+                            <td><a href="https://sinalite.com/en_ca/business-cards/foil-gold-silver.html" target="_blank">Link</a"></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div id="hoodies" class="search-section" style="display: none;">
+            <h2>Hoodies</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="hoodiesPhotos/hoodie1.png" alt="Hoodie 1" class="product-img"></td>
+                        <td>Stylish Hoodie</td>
+                        <td>A comfortable and trendy hoodie for all occasions.</td>
+                        <td><a href="details/hoodie1.html" target="_blank">View Details</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        
+        <!-- T-Shirts Section -->
+        <div id="tshirts" class="search-section" style="display: none;">
+            <h2>T-Shirts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="tshirtsPhotos/tshirt1.png" alt="T-Shirt 1" class="product-img"></td>
+                        <td>Graphic T-Shirt</td>
+                        <td>A cool graphic T-shirt made with 100% cotton.</td>
+                        <td><a href="details/tshirt1.html" target="_blank">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Collared Shirts Section -->
+        <div id="collared-shirts" class="search-section" style="display: none;">
+            <h2>Collared Shirts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="collaredShirtsPhotos/shirt1.png" alt="Collared Shirt 1" class="product-img"></td>
+                        <td>Formal Collared Shirt</td>
+                        <td>A high-quality formal collared shirt perfect for office wear.</td>
+                        <td><a href="details/shirt1.html" target="_blank">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="collaredShirtsPhotos/shirt2.png" alt="Collared Shirt 2" class="product-img"></td>
+                        <td>Casual Collared Shirt</td>
+                        <td>A comfortable casual collared shirt for everyday use.</td>
+                        <td><a href="details/shirt2.html" target="_blank">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+                
+        <!-- Banners Section -->
+        <div id="banners" class="search-section" style="display: none;">
+            <h2>Banners</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="bannersimages/banner-matte.jpg" alt="Banner 1" class="product-img"></td>
+                        <td>Matte Vinyl Banners</td>
+                        <td>With a finish that softens strong glare, Matte Vinyl Banners are perfect under sunlight and bright lighting.
+
+                            13oz Matte Vinyl.</td>
+                            <td><a href="https://sinalite.com/en_ca/large-format/vinyl-banners/13oz-matte-vinyl.html" target="_blank">Link</a"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+                    
+
+                    
+
+                    
+                    
+
     </main>
 
    
@@ -258,9 +590,212 @@
     <script>
         function openSection(sectionId) {
             const sections = document.querySelectorAll('.search-section');
-            sections.forEach(section => section.style.display = 'none');
-            document.getElementById(sectionId).style.display = 'block';
+            sections.forEach(section => section.style.display = 'none'); // Hide all sections
+            document.getElementById(sectionId).style.display = 'block'; // Show the selected section
         }
+
+
+                // Toggle Add Product Form
+        function toggleAddProduct() {
+            const addForm = document.getElementById('add-product-form');
+            addForm.style.display = addForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Toggle Remove Product Form
+        function toggleRemoveProduct() {
+            const removeForm = document.getElementById('remove-product-form');
+            removeForm.style.display = removeForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        document.addEventListener("DOMContentLoaded", loadProducts);
+
+function loadProducts() {
+    const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+    savedProducts.forEach(product => renderProductRow(product));
+}
+
+// Add Product Functionality
+function addProduct() {
+    const type = document.getElementById("product-type").value;
+    const name = document.getElementById("product-name").value;
+    const description = document.getElementById("product-description").value;
+    const keywords = document.getElementById("product-keywords").value;
+    const link = document.getElementById("product-link").value;
+    const imageInput = document.getElementById("product-image");
+
+    if (!name || !description || !link || !imageInput.files[0]) {
+        alert("Please fill all fields and upload an image.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const newProduct = {
+            type: document.getElementById("product-type").value, // e.g., "collared-shirts"
+            name: document.getElementById("product-name").value,
+            description: document.getElementById("product-description").value,
+            keywords: document.getElementById("product-keywords").value.split(",").map(k => k.trim().toLowerCase()),
+            link: document.getElementById("product-link").value,
+            image: e.target.result // Image as Base64
+        };
+
+
+        // Save Product to Local Storage
+        const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+        savedProducts.push(newProduct);
+        localStorage.setItem("products", JSON.stringify(savedProducts));
+
+        // Add Product to Table
+        renderProductRow(newProduct);
+        alert("Product added successfully!");
+    };
+    reader.readAsDataURL(imageInput.files[0]);
+    }
+
+    // Remove Product Functionality
+    function removeProduct() {
+        const name = document.getElementById("remove-product-name").value.toLowerCase();
+        let savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+        // Filter products from localStorage
+        const updatedProducts = savedProducts.filter(product => product.name.toLowerCase() !== name);
+
+        if (updatedProducts.length === savedProducts.length) {
+            alert("Product not found.");
+            return;
+        }
+
+        // Update localStorage
+        localStorage.setItem("products", JSON.stringify(updatedProducts));
+        alert("Product removed successfully!");
+
+        // Remove product from the appropriate table dynamically
+        const tables = document.querySelectorAll("table tbody");
+        tables.forEach(table => {
+            table.querySelectorAll("tr").forEach(row => {
+                if (row.children[1].textContent.toLowerCase() === name) {
+                    row.remove();
+                }
+            });
+        });
+    }
+
+
+    // Render Product Row (Helper Function)
+    function renderProductRow(product) {
+        const tableBody = document.querySelector(`#${product.type} table tbody`);
+        if (!tableBody) return;
+
+        const newRow = `
+            <tr>
+                <td><img src="${product.image}" class="product-img"></td>
+                <td>${product.name}</td>
+                <td>${product.description}</td>
+                <td style="display: none;">${product.keywords.join(", ")}</td>
+                <td><a href="${product.link}" target="_blank">View Details</a></td>
+            </tr>
+        `;
+        tableBody.insertAdjacentHTML("beforeend", newRow);
+    }
+
+    // Search Functionality
+    function searchProducts() {
+        const input = document.getElementById("search-bar").value.toLowerCase();
+        const rows = document.querySelectorAll(`#business table tbody tr`);
+
+        rows.forEach(row => {
+            const name = row.children[1].textContent.toLowerCase();
+            const description = row.children[2].textContent.toLowerCase();
+            const keywords = row.children[3].textContent.toLowerCase();
+
+            row.style.display = (name.includes(input) || description.includes(input) || keywords.includes(input))
+                ? "" : "none";
+        });
+    }
+
+    
+        let passwordVerified = false; // Password state
+
+    // Function to toggle password form
+    function showPasswordForm(action) {
+        passwordVerified = false; // Reset verification
+        document.getElementById("password-form").style.display = "block";
+        document.getElementById("password-form").dataset.action = action;
+    }
+
+    // Verify Password
+    function verifyPassword() {
+        const inputPassword = document.getElementById("admin-password").value;
+        const correctPassword = "123"; // Admin Password
+
+        if (inputPassword === correctPassword) {
+            passwordVerified = true;
+            document.getElementById("password-form").style.display = "none";
+            alert("Password verified!");
+
+            const action = document.getElementById("password-form").dataset.action;
+            if (action === "add") toggleAddProduct();
+            if (action === "remove") toggleRemoveProduct();
+            if (action === "keywords") toggleAssignKeywords();
+        } else {
+            alert("Incorrect password. Try again.");
+        }
+    }
+
+    // Add Product Form (Password Protected)
+    function toggleAddProduct() {
+        if (!passwordVerified) return showPasswordForm("add");
+        document.getElementById("add-product-form").style.display = "block";
+    }
+
+    // Remove Product Form (Password Protected)
+    function toggleRemoveProduct() {
+        if (!passwordVerified) return showPasswordForm("remove");
+        document.getElementById("remove-product-form").style.display = "block";
+    }
+
+    // Assign Keywords Form (Password Protected)
+    function toggleAssignKeywords() {
+        if (!passwordVerified) return showPasswordForm("keywords");
+        document.getElementById("assign-keywords-form").style.display = "block";
+    }
+
+    // Assign Keywords to Existing Product
+    function assignKeywords() {
+        const name = document.getElementById("keyword-product-name").value.toLowerCase();
+        const newKeywords = document.getElementById("new-keywords").value.toLowerCase();
+
+        const rows = document.querySelectorAll(`#business table tbody tr`);
+        let found = false;
+
+        rows.forEach(row => {
+            const productName = row.children[1].textContent.trim().toLowerCase();
+            if (productName === name) {
+                const keywordsCell = row.children[3];
+                const existingKeywords = keywordsCell.textContent ? keywordsCell.textContent.split(", ") : [];
+                const combinedKeywords = Array.from(new Set([...existingKeywords, ...newKeywords.split(",")]));
+                keywordsCell.textContent = combinedKeywords.join(", ");
+                found = true;
+            }
+        });
+
+        if (found) {
+            alert("Keywords assigned successfully!");
+        } else {
+            alert("Product not found.");
+        }
+
+        document.getElementById("assign-keywords-form").style.display = "none";
+    }
+
+    function openSection(sectionId) {
+        const sections = document.querySelectorAll('.search-section');
+        sections.forEach(section => section.style.display = 'none');
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+
+
     </script>
 </body>
 </html>
