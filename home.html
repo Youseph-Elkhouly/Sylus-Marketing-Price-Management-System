@@ -609,94 +609,120 @@
 
         document.addEventListener("DOMContentLoaded", loadProducts);
 
-function loadProducts() {
-    const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
-    savedProducts.forEach(product => renderProductRow(product));
-}
+            // Load products
+            // Load products
+        async function loadProducts() {
+            try {
+                const response = await fetch('http://127.0.0.1:3000/products'); // Updated URL
+                const products = await response.json();
 
-// Add Product Functionality
-function addProduct() {
-    const type = document.getElementById("product-type").value;
-    const name = document.getElementById("product-name").value;
-    const description = document.getElementById("product-description").value;
-    const keywords = document.getElementById("product-keywords").value;
-    const link = document.getElementById("product-link").value;
-    const imageInput = document.getElementById("product-image");
-
-    if (!name || !description || !link || !imageInput.files[0]) {
-        alert("Please fill all fields and upload an image.");
-        return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const newProduct = {
-            type: document.getElementById("product-type").value, // e.g., "collared-shirts"
-            name: document.getElementById("product-name").value,
-            description: document.getElementById("product-description").value,
-            keywords: document.getElementById("product-keywords").value.split(",").map(k => k.trim().toLowerCase()),
-            link: document.getElementById("product-link").value,
-            image: e.target.result // Image as Base64
-        };
+                products.forEach(product => renderProductRow(product));
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
 
 
-        // Save Product to Local Storage
-        const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
-        savedProducts.push(newProduct);
-        localStorage.setItem("products", JSON.stringify(savedProducts));
+    // Add product
+    // Add product
+    async function addProduct() {
+        const type = document.getElementById("product-type").value;
+        const name = document.getElementById("product-name").value;
+        const description = document.getElementById("product-description").value;
+        const keywords = document.getElementById("product-keywords").value.split(',').map(k => k.trim());
+        const link = document.getElementById("product-link").value;
+        const imageInput = document.getElementById("product-image");
 
-        // Add Product to Table
-        renderProductRow(newProduct);
-        alert("Product added successfully!");
-    };
-    reader.readAsDataURL(imageInput.files[0]);
-    }
-
-    // Remove Product Functionality
-    function removeProduct() {
-        const name = document.getElementById("remove-product-name").value.toLowerCase();
-        let savedProducts = JSON.parse(localStorage.getItem("products")) || [];
-
-        // Filter products from localStorage
-        const updatedProducts = savedProducts.filter(product => product.name.toLowerCase() !== name);
-
-        if (updatedProducts.length === savedProducts.length) {
-            alert("Product not found.");
+        if (!name || !description || !link || !imageInput.files[0]) {
+            alert("Please fill all fields and upload an image.");
             return;
         }
 
-        // Update localStorage
-        localStorage.setItem("products", JSON.stringify(updatedProducts));
-        alert("Product removed successfully!");
+        const reader = new FileReader();
+        reader.onload = async function (e) {
+            const product = {
+                type, name, description, keywords, link, image: e.target.result
+            };
 
-        // Remove product from the appropriate table dynamically
-        const tables = document.querySelectorAll("table tbody");
-        tables.forEach(table => {
-            table.querySelectorAll("tr").forEach(row => {
-                if (row.children[1].textContent.toLowerCase() === name) {
-                    row.remove();
+            try {
+                const response = await fetch('http://127.0.0.1:3000/products', { // Updated URL
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(product)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to add product.');
                 }
-            });
-        });
+
+                const result = await response.json();
+                renderProductRow(product);
+                alert(result.message);
+            } catch (error) {
+                console.error('Error adding product:', error);
+                alert('An error occurred while adding the product.');
+            }
+        };
+        reader.readAsDataURL(imageInput.files[0]);
     }
 
 
-    // Render Product Row (Helper Function)
+    // Remove product
+    // Remove product
+    async function removeProduct() {
+        const name = document.getElementById("remove-product-name").value;
+
+        try {
+            const response = await fetch('http://127.0.0.1:3000/products', { // Updated URL
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+
+            if (!response.ok) {
+                if (response.status === 404) {
+                    alert('Product not found.');
+                    return;
+                }
+                throw new Error('Failed to remove product.');
+            }
+
+            const result = await response.json();
+            document.querySelectorAll("table tbody tr").forEach(row => {
+                if (row.children[1].textContent === name) row.remove();
+            });
+
+            alert(result.message);
+        } catch (error) {
+            console.error('Error removing product:', error);
+        }
+    }
+
+
+    // Helper function to render a product row
     function renderProductRow(product) {
         const tableBody = document.querySelector(`#${product.type} table tbody`);
-        if (!tableBody) return;
+        if (!tableBody) {
+            console.error(`Table for product type "${product.type}" not found.`);
+            return;
+        }
 
         const newRow = `
             <tr>
-                <td><img src="${product.image}" class="product-img"></td>
+                <td><img src="${product.image}" class="product-img" alt="${product.name}"></td>
                 <td>${product.name}</td>
                 <td>${product.description}</td>
                 <td style="display: none;">${product.keywords.join(", ")}</td>
-                <td><a href="${product.link}" target="_blank">Link</a></td>
+                <td><a href="${product.link}" target="_blank">View Details</a></td>
             </tr>
         `;
         tableBody.insertAdjacentHTML("beforeend", newRow);
     }
+
+    // Load products on page load
+    document.addEventListener("DOMContentLoaded", loadProducts);
+
+
 
     // Search Functionality
     function searchProducts() {

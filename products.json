@@ -1,0 +1,123 @@
+[
+  {
+    "type": "business",
+    "name": "Best Value Business Cards",
+    "description": "These Wholesale Business Cards offer the best value if you are looking for the most cost effective option or the quickest turnaround.",
+    "keywords": [
+      "value",
+      "cheap",
+      "14pt"
+    ],
+    "link": "https://sinalite.com/en_ca/business-cards/14pt-profit-maximizer.html",
+    "image": "BCPhotos/bestvalue.png"
+  },
+  {
+    "type": "business",
+    "name": "Matte Business Cards",
+    "description": "Our Matte Business Cards are our standard and most popular finish. Smooth to the touch with a silky, elegant finish.",
+    "keywords": [
+      "matte",
+      "smooth",
+      "popular"
+    ],
+    "link": "https://sinalite.com/en_ca/business-cards/14pt-matte-satin-aq.html",
+    "image": "BCPhotos/matte.png"
+  },
+  {
+    "type": "business",
+    "name": "UV (High Gloss) Business Cards",
+    "description": "Our glossiest finish! These UV Business Cards offer the most shine for a standout look.",
+    "keywords": [
+      "uv",
+      "glossy",
+      "shine"
+    ],
+    "link": "https://sinalite.com/en_ca/business-cards/14pt-uv-high-gloss.html",
+    "image": "BCPhotos/gloss.png"
+  },
+  {
+    "type": "business",
+    "name": "Lamination Business Cards",
+    "description": "Our Laminated Business cards offer durability and a unique feel with gloss or matte lamination.",
+    "keywords": [
+      "laminated",
+      "durable",
+      "matte",
+      "gloss"
+    ],
+    "link": "https://sinalite.com/en_ca/business-cards/18pt-matte-silk-lamination.html",
+    "image": "BCPhotos/lamination.png"
+  },
+  {
+    "type": "hoodies",
+    "name": "Stylish Hoodie",
+    "description": "A comfortable and trendy hoodie for all occasions.",
+    "keywords": [
+      "hoodie",
+      "stylish",
+      "comfortable"
+    ],
+    "link": "details/hoodie1.html",
+    "image": "hoodiesPhotos/hoodie1.png"
+  },
+  {
+    "type": "tshirts",
+    "name": "Graphic T-Shirt",
+    "description": "A cool graphic T-shirt made with 100% cotton.",
+    "keywords": [
+      "tshirt",
+      "graphic",
+      "cotton"
+    ],
+    "link": "details/tshirt1.html",
+    "image": "tshirtsPhotos/tshirt1.png"
+  },
+  {
+    "type": "collared-shirts",
+    "name": "Formal Collared Shirt",
+    "description": "A high-quality formal collared shirt perfect for office wear.",
+    "keywords": [
+      "formal",
+      "collared",
+      "office"
+    ],
+    "link": "details/shirt1.html",
+    "image": "collaredShirtsPhotos/shirt1.png"
+  },
+  {
+    "type": "collared-shirts",
+    "name": "Casual Collared Shirt",
+    "description": "A comfortable casual collared shirt for everyday use.",
+    "keywords": [
+      "casual",
+      "collared",
+      "everyday"
+    ],
+    "link": "details/shirt2.html",
+    "image": "collaredShirtsPhotos/shirt2.png"
+  },
+  {
+    "type": "banners",
+    "name": "Matte Vinyl Banners",
+    "description": "With a finish that softens strong glare, Matte Vinyl Banners are perfect under sunlight and bright lighting.",
+    "keywords": [
+      "banner",
+      "matte",
+      "vinyl"
+    ],
+    "link": "https://sinalite.com/en_ca/large-format/vinyl-banners/13oz-matte-vinyl.html",
+    "image": "bannersimages/banner-matte.jpg"
+  },
+  {
+    "type": "banners",
+    "name": "Mesh Banner",
+    "description": "Perfect for windy outdoor conditions, mesh banners allow air to pass through for durability.",
+    "keywords": [
+      "banner",
+      "mesh",
+      "outdoor"
+    ],
+    "link": "https://sinalite.com/en_ca/large-format/mesh-banners.html",
+    "image": "bannersimages/mesh_banner.jpg"
+  }
+]
