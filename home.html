@@ -419,7 +419,13 @@
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
                     
+=======
+                    <tr>
+                        
+                    </tr>
+>>>>>>> 3087bcbc539416c446993cfabfcd8014aade2eea
                 </tbody>
             </table>
         </div>
@@ -512,16 +518,16 @@
 
             // Load products
             // Load products
-        async function loadProducts() {
-            try {
-                const response = await fetch('http://127.0.0.1:3000/products'); // Updated URL
-                const products = await response.json();
-
-                products.forEach(product => renderProductRow(product));
-            } catch (error) {
-                console.error('Error loading products:', error);
+            async function loadProducts() {
+                try {
+                    const response = await fetch('http://localhost:3000/products');
+                    const products = await response.json();
+                    products.forEach(product => renderProductRow(product));
+                } catch (error) {
+                    console.error('Error loading products:', error);
+                }
             }
-        }
+
 
 
     // Add product
