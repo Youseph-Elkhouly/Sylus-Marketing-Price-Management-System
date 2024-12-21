@@ -1,80 +1,116 @@
 const express = require('express');
 const fs = require('fs');
-const cors = require('cors'); // Import CORS
-const path = require('path');
-
+const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(cors()); // Enable CORS for all requests
-app.use(express.json()); // Middleware for JSON parsing
-app.use(express.static(path.join(__dirname, 'frontEnd'))); // Serve static files
+app.use(express.json({ limit: '10mb' })); // Set payload size limit
+app.use(cors()); // Enable CORS
+app.use(express.static('frontEnd')); // Serve static files (frontend)
 
-const productsFile = path.join(__dirname, 'products.json');
+// Path to the JSON file
+const productsFile = './products.json';
 
-// Route to Get Products
+// Get Products
 app.get('/products', (req, res) => {
     fs.readFile(productsFile, 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading products file:', err);
-            return res.status(500).json({ error: 'Error reading products file.' });
+            return res.status(500).send('Error reading products file.');
         }
-        res.json(JSON.parse(data));
+        try {
+            const products = JSON.parse(data);
+            res.json(products);
+        } catch (parseError) {
+            console.error('Error parsing JSON file:', parseError);
+            res.status(500).send('Error parsing products file.');
+        }
     });
 });
 
-// Route to Add a Product
+// Add Product
 app.post('/products', (req, res) => {
+    console.log('Incoming request body:', req.body); // Debugging
     const newProduct = req.body;
+
+    // Validate product
+    if (!newProduct || !newProduct.name || !newProduct.type || !newProduct.image) {
+        console.error('Invalid product data received:', newProduct);
+        return res.status(400).send('Invalid product data.');
+    }
 
     fs.readFile(productsFile, 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading products file:', err);
-            return res.status(500).json({ error: 'Error reading products file.' });
+            return res.status(500).send('Error reading products file.');
         }
 
-        const products = JSON.parse(data);
+        let products;
+        try {
+            products = JSON.parse(data);
+        } catch (parseError) {
+            console.error('Error parsing products file:', parseError);
+            return res.status(500).send('Error parsing products file.');
+        }
+
         products.push(newProduct);
 
         fs.writeFile(productsFile, JSON.stringify(products, null, 2), (err) => {
             if (err) {
-                console.error('Error writing products file:', err);
-                return res.status(500).json({ error: 'Error writing products file.' });
+                console.error('Error writing to products file:', err);
+                return res.status(500).send('Error writing to products file.');
             }
+            console.log('Product added successfully:', newProduct);
             res.json({ message: 'Product added successfully!', product: newProduct });
         });
     });
 });
 
-// Route to Remove a Product
+// Remove Product
 app.delete('/products', (req, res) => {
     const { name } = req.body;
+
+    if (!name) {
+        console.error('Product name is required to delete.');
+        return res.status(400).send('Product name is required.');
+    }
 
     fs.readFile(productsFile, 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading products file:', err);
-            return res.status(500).json({ error: 'Error reading products file.' });
+            return res.status(500).send('Error reading products file.');
         }
 
-        const products = JSON.parse(data);
-        const updatedProducts = products.filter(product => product.name.toLowerCase() !== name.toLowerCase());
+        let products;
+        try {
+            products = JSON.parse(data);
+        } catch (parseError) {
+            console.error('Error parsing products file:', parseError);
+            return res.status(500).send('Error parsing products file.');
+        }
+
+        const updatedProducts = products.filter(
+            (product) => product.name.toLowerCase() !== name.toLowerCase()
+        );
 
         if (updatedProducts.length === products.length) {
-            return res.status(404).json({ error: 'Product not found.' });
+            console.error('Product not found:', name);
+            return res.status(404).send('Product not found.');
         }
 
         fs.writeFile(productsFile, JSON.stringify(updatedProducts, null, 2), (err) => {
             if (err) {
-                console.error('Error writing products file:', err);
-                return res.status(500).json({ error: 'Error writing products file.' });
+                console.error('Error writing to products file:', err);
+                return res.status(500).send('Error writing to products file.');
             }
+            console.log('Product removed successfully:', name);
             res.json({ message: 'Product removed successfully!' });
         });
     });
 });
 
-// Start the Server
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
