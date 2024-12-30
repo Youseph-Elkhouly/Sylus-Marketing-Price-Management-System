@@ -514,13 +514,14 @@
             // Load products
         async function loadProducts() {
             try {
-                const response = await fetch('https://sylus-marketing-price-management-system.onrender.com/products');
+                const response = await fetch('https://6766388a410f84999657187d.mockapi.io/apikey/products');
                 const products = await response.json();
                 products.forEach(product => renderProductRow(product));
             } catch (error) {
                 console.error('Error loading products:', error);
             }
         }
+
 
 
 
@@ -541,23 +542,28 @@
             const reader = new FileReader();
             reader.onload = async function (e) {
                 const product = {
-                    type, name, description, keywords, link, image: e.target.result
+                    type, 
+                    name, 
+                    description, 
+                    keywords, 
+                    link, 
+                    image: e.target.result
                 };
 
                 try {
-                    const response = await fetch('https://sylus-marketing-price-management-system.onrender.com/products', {
+                    const response = await fetch('https://6766388a410f84999657187d.mockapi.io/apikey/products', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(product)
                     });
 
                     if (!response.ok) {
-                        throw new Error('Failed to add product.');
+                        throw new Error(`Failed to add product: ${response.status}`);
                     }
 
                     const result = await response.json();
-                    renderProductRow(product);
-                    alert(result.message);
+                    console.log('Product added successfully:', result);
+                    alert('Product added successfully!');
                 } catch (error) {
                     console.error('Error adding product:', error);
                     alert('An error occurred while adding the product.');
@@ -567,32 +573,31 @@
         }
 
 
+
+
     // Remove product
-    // Remove product
-    async function removeProduct() {
+        async function removeProduct() {
         const name = document.getElementById("remove-product-name").value;
 
         try {
-            const response = await fetch('https://sylus-marketing-price-management-system.onrender.com/products', {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name })
-            });
+            const response = await fetch('https://6766388a410f84999657187d.mockapi.io/apikey/products');
+            const products = await response.json();
+            const product = products.find(p => p.name.toLowerCase() === name.toLowerCase());
 
-            if (!response.ok) {
-                if (response.status === 404) {
-                    alert('Product not found.');
-                    return;
-                }
-                throw new Error('Failed to remove product.');
+            if (!product) {
+                alert('Product not found.');
+                return;
             }
 
-            const result = await response.json();
+            await fetch(`https://6766388a410f84999657187d.mockapi.io/apikey/products/${product.id}`, {
+                method: 'DELETE'
+            });
+
             document.querySelectorAll("table tbody tr").forEach(row => {
                 if (row.children[1].textContent === name) row.remove();
             });
 
-            alert(result.message);
+            alert('Product removed successfully!');
         } catch (error) {
             console.error('Error removing product:', error);
         }
